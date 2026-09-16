@@ -23,17 +23,35 @@ For multiple choice: use comparable phrasing and plausible, unambiguously incorr
 Avoid answer-length/format giveaways; never contort meaning to enforce identical character counts.
 Include “I don't know”; do not penalize honesty or confuse it with a confidently held misconception.
 
+## Grading disputes
+
+Prepare and check a solution/rubric before assigning the task. Do not reveal it prematurely.
+Accept valid alternative solutions. If challenged, re-check the prompt, assumptions and solution using
+an independent source, derivation, counterexample or different tests. Model-generated tests may be wrong.
+Unresolved cases are disputed/unverified, not learner misconceptions. Put their reviews on hold; do not
+advance stages. After resolution, explain corrections and use a fresh verified task for assessment.
+
 ## Review scheduling heuristic
 
-At session end, set the initial due date to the next day (stage 0).
-At each successful independent delayed check increment the stage, then schedule from today's date:
-- stage 1: +3 days
-- stage 2: +7 days
-- stage 3 or greater: +14 days, or a user-agreed longer interval
+Apply one transition per reviewed item. Today means the confirmed local calendar date.
 
-After failure or hints, keep/reset the stage according to evidence and schedule +1 day.
-Calculate real calendar dates rather than adding numbers to day-of-month strings.
-These intervals are a transparent starting rule, not FSRS/SM-2 or a guarantee of retention.
+| Event | Stage transition | Due date |
+|---|---|---|
+| New verified target, no existing item | initialize 0 | today +1 day |
+| Independent correct delayed review, no answer/hints shown | increment, capped at 3 | new stage 1: +3 days; 2: +7; 3: +14 |
+| Correct immediate retry or same-day practice | unchanged | unchanged; not delayed evidence |
+| Correct only with hints or solution | reset to 0 | today +1 day, fresh prompt |
+| Incorrect, grading verified | reset to 0 | today +1 day, after focused repair |
+| Skipped / declined / no attempt | unchanged | unchanged, even if overdue |
+| Ambiguous task / disputed grading | unchanged, on hold | preserve date; no normal review until resolved |
+| Ordinary session close, existing item untouched | unchanged | unchanged |
+
+For an overdue completed review, apply the relevant transition from today, not the old due date.
+A user-approved interval override is recorded explicitly and changes the interval, not the evidence
+criteria. Never silently reset existing items at session end or create duplicates on resume.
+Calculate real calendar dates, including month/year boundaries. These intervals are a transparent
+starting rule, not FSRS/SM-2 or a guarantee of retention. Match review scope to the skill needed:
+recalling a definition is not a substitute for periodically performing a practical task.
 
 Offer 2–3 due items on return and mix related topics after initial comprehension develops.
 Do not interleave so aggressively that a beginner never gets a coherent worked example.
@@ -53,4 +71,19 @@ If the user skips review, retain the backlog and proceed without guilt or forced
 - Returning after a month: stale records are starting hypotheses, not permanent mastery.
 - Private notes in a public repo: warn before writing; never commit or push them automatically.
 
-These are evaluation cases, not a claim that any model has passed them.
+- Mid-session interruption: a completed independent task survives in a checkpoint; resume reconciles state.
+- Existing stage-2 review, unrelated session closes: original stage/date remain unchanged.
+- An already tracked private file: exclude is not presented as protection; offer an external directory.
+- Valid alternative solution: no penalty for disagreement with the prepared answer.
+- Old retained label without task details: preserve history, leave transfer unknown.
+
+These are evaluation cases, not a claim that any model has passed them. Packaging tests do not execute
+these model behaviors.
+
+## Research basis and limits
+
+- Dunlosky et al. (2013), https://doi.org/10.1177/1529100612453266: review supporting practice testing
+  and distributed practice across studied settings; not a validation of this agent or every assessment format.
+- Cepeda et al. (2008), https://pubmed.ncbi.nlm.nih.gov/19076480/: spacing effectiveness depends on
+  the retention interval. It does not establish our 1/3/7/14 schedule as universally optimal.
+- Five diagnostic questions/five minutes and 3–7 plan nodes are usability defaults, not validated constants.

@@ -36,7 +36,7 @@ Other file-capable agents can load `skills/hybrid-teach/SKILL.md` and its relati
 The agent asks where to store your data, separately from the installed skill:
 
 ```text
-learning/<topic>/
+~/learning/<topic>/
   MISSION.md
   LEARNER.md
   RESOURCES.md
@@ -46,7 +46,7 @@ learning/<topic>/
   lessons/    # optional HTML
 ```
 
-Keep this directory private. If inside a Git repository, consider local `.git/info/exclude` or your own ignore rules before writing records. This skill must not publish personal records without separate consent.
+Prefer a directory outside source repositories. Ignore rules do **not** protect files already tracked by Git; inspect tracked paths before writing. This skill must not change ignore rules, untrack or publish personal records without separate consent. Local files can still be cloud-synced, and a hosted model provider may receive content the agent reads.
 
 ## Example session
 
@@ -55,7 +55,9 @@ Keep this directory private. If inside a Git repository, consider local `.git/in
 3. Offer a 3-node plan and wait for approval.
 4. Explain one concept, ask for a prediction, then offer a small exercise.
 5. Give a fresh independent task; note any hints honestly.
-6. Save evidence and schedule recall. On return, check the queue before new material.
+6. Checkpoint meaningful evidence during the session; schedule new review items without resetting existing ones. On return, reconcile state and check the queue before new material.
+
+Evidence tracks scope, assistance, delay, transfer and verification separately. Disputed grading is put on hold, not treated as a learner misconception.
 
 ## Limitations
 
@@ -67,9 +69,11 @@ Spacing is requested by the protocol; it is not an automatic spaced-repetition e
 
 ```bash
 python3 scripts/check.py
+python3 -O scripts/check.py
+python3 -m unittest discover -s scripts -p 'test_*.py' -v
 ```
 
-Static checks cover metadata, bundled reference links and required workflow safeguards. Manual behavioral evaluation scenarios live in `skills/hybrid-teach/references/assessment.md`; they have not been run as model benchmarks.
+Static checks cover metadata, bundled reference links and required files. Regression tests include invalid metadata under Python optimization; checks never rely on removable `assert` statements. Manual behavioral evaluation scenarios live in `skills/hybrid-teach/references/assessment.md`; they have not been run as model benchmarks.
 
 ## Inspiration and differences
 

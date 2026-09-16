@@ -13,10 +13,14 @@ These instructions guide an agent, not an enforced tutoring engine or a validate
 
 ## 1. Establish a private workspace and mission
 
-Ask which directory should hold learning data; offer `learning/<topic>/` in the current project.
-Never put personal records inside the installed skill directory. Before creating records in a git
-repository, explain the privacy implications and offer a local `.git/info/exclude` entry. Do not
-commit or upload learning data without explicit permission. Do not overwrite existing files.
+Ask which directory should hold learning data; default to a user-approved directory outside source
+repositories, such as `~/learning/<topic>/`. Never use the installed skill directory.
+If the user chooses a Git repository, inspect its root and tracked paths before writing. Ignore rules
+(including `.git/info/exclude`) do NOT protect already tracked files. Warn about tracked destinations
+and offer an external directory; never untrack files, change ignore rules, commit, or push without
+explicit permission for that action. Local files may still sync through backup/cloud software, and
+content read by a hosted agent may reach its model provider. Do not promise complete privacy.
+Preserve existing content; deliberate, targeted state updates are allowed. Read before editing.
 Read [state formats](references/state.md) before creating or updating state.
 
 On return, read MISSION.md, LEARNER.md, REVIEW.md, RESOURCES.md and relevant learning records.
@@ -81,8 +85,13 @@ images cannot be inspected, do not claim visual verification. Inspection itself 
 
 ## 5. Practice beyond recognition
 
+Before assigning a task, prepare and check its solution or rubric without displaying the answer.
+Allow valid alternative solutions; generated tests are fallible evidence, not an oracle.
+If an answer is disputed or the prompt is ambiguous, suspend grading and re-check assumptions with
+an independent source, derivation, counterexample, or different test. If unresolved, record the task
+as disputed/unverified; do not label the learner's response a misconception or advance its review stage.
 After assisted learning, require an independent attempt at a fresh problem without hints before marking
-anything demonstrated. Include a transfer task when feasible: a changed constraint, unfamiliar example,
+independent performance. Assisted performance can be recorded explicitly as assisted. Include a transfer task when feasible: a changed constraint, unfamiliar example,
 or explanation to another person. For programming use executable tests; for proofs check each inference;
 for open-ended subjects use an explicit rubric and distinguish interpretation from factual error.
 Do not run unsafe experiments or provide high-stakes professional advice as a practice task.
@@ -91,17 +100,26 @@ Consult [assessment and review](references/assessment.md) for hint policy, evide
 Multiple-choice success alone is weak evidence. Record both the help given and the learner's performance.
 If the user only wants an explanation, respect that; mark the concept “introduced,” not “mastered.”
 
-## 6. Close, persist, and revisit
+## 6. Checkpoint, close, and revisit
+
+Checkpoint meaningful evidence immediately after independent performance, a diagnosed/corrected
+misconception, or an approved mission change; do not wait for the session to end. Do not save every turn.
+Write the evidence record first, then update the learner index and review queue with the same record ID.
+If interrupted, reconcile these files from the evidence records on return rather than inventing outcomes.
+Re-read before editing; if another session changed a file, reconcile or ask rather than overwriting it.
 
 Summarize: what changed, what was demonstrated, uncertainty/misconceptions, and the next concrete task.
 Write a compact learning record only when evidence or a meaningful change warrants it; distinguish
-self-report, assisted performance, independent performance, and delayed retention.
+self-report, assisted performance, independent performance, and delayed retention. Record task scope,
+assistance, assessment date/delay, transfer evidence, and verification status separately: recall of a
+definition does not establish ability to apply it. Avoid a single permanent mastery label.
 Update LEARNER.md as a concise index; supersede incorrect records rather than erasing history.
 Save reusable takeaways in reference/; raw transcripts are optional and are not learner state.
 
 Schedule recall in REVIEW.md using explicit local calendar dates after confirming the date/timezone
-when unknown. A starting heuristic is 1, 3, 7, then 14 days after successive successful reviews;
-adjust to difficulty and evidence. This is not a validated scheduling algorithm.
+when unknown. Use the explicit transitions in references/assessment.md: new items begin at +1 day, followed by
+3-, 7-, and 14-day intervals after successful independent delayed checks. Never reset an existing
+item merely because a session ended. Confirm any personalized interval override with the user. This is not a validated scheduling algorithm.
 At the next session offer a few due items before new material; do not consume the whole session with a backlog.
 There are no automatic notifications or background jobs. State this clearly.
 
